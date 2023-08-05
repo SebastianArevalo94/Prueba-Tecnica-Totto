@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { CheckUser } from "../services/http";
+import Swal from 'sweetalert2'
 
 const Home = () => {
+  const [email, setEmail] = useState("");
+
   const navigate = useNavigate();
+
+  const handleChange = ({ target }) => {
+    setEmail(target.value);
+    console.log(email);
+  };
+
+  const handleSubmit = () => {
+    console.log(email);
+    // CheckUser()
+    //   .then((resp) => {
+    //     console.log(resp);
+    //   })
+    //   .catch();
+  };
+
   return (
     <div>
       <div className="navinfo">
@@ -18,14 +37,11 @@ const Home = () => {
           class="form-control"
           id="Email"
           placeholder="Email"
+          value={email}
+          onChange={handleChange}
           autoComplete="off"
         />
-        <button
-          className="button mt-4 m-auto"
-          onClick={() => {
-            navigate("/form");
-          }}
-        >
+        <button className="button mt-4 m-auto" onClick={handleSubmit}>
           ENVIAR
         </button>
       </div>
